@@ -45,7 +45,7 @@ F0=50;
 T0=1/F0;
 T=1/fs;
 N=T0/T;
-
+interp1
 t=linspace(0,2*T0,2*N);
 y=sin(2*pi*50*t);
 plot(t,y,"-*")
@@ -64,7 +64,31 @@ x_truth=x0(1)+x_truth_idx*(xq(2)-xq(1));
 sprintf("误差为%f%%",(x_truth-1/100)*(1/100)*100)
 
 %% 8
+clc;clear;
+syms xx yy x r;
+z=r+1j*x;
+R=sym((xx-r./(r+1)).^2+yy.^2-(1./(r+1)).^2);
+X=sym((xx-1).^2+(yy-1./x).^2-(1./x).^2);
 
+%1
+fimplicit(subs(R,r,[0,1/2,1,3/2,2]));
+hold on
+fimplicit(subs(X,x,[-2,-3/2,-1,-1/2,1/2,1,3/2,2]));
+hold on
+fimplicit(@(x,y) (x-1).^2+(y-(1/0)).^2-((1/0).^2));
+hold on
+axis square
+axis([-1,1,-1,1])
+%2
+[xx,yy]=solve(subs(R,r,1),subs(X,x,1));
+resx=xx(find(xx~=1));
+resy=yy(find(yy~=0));
+plot(resx,resy,"*","MarkerSize",5)
+A=sqrt(resx^2+resy^2);
+ang=eval(atan(resy/resx));
+%3
+plot(0,0,"Marker","o","MarkerSize",5)
+line([0,resx],[0,resy],"LineWidth",1.5,"Color","k")
 
 
 
