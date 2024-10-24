@@ -1,6 +1,6 @@
 %% 1
 clc;clear;
-x=linspace(-5,5,100);
+x=linspace(-5,5,1000);
 y=x;
 [X,Y]=meshgrid(x,y);
 f=(X+Y)./(X.^2+Y.^4+2);
@@ -89,8 +89,31 @@ res_C=eval(res_C.*10^-12);
 res_L=res_L(res_L>0);
 res_C=res_C(res_C>0);
 
+%% 8
+clc;clear;
+% 1
+Zr=[2 2];
+Pk=[0 0];
+w=linspace(0,2*pi,2000);
+H=abs(exp(1i*w)-2).*abs(exp(1i*w)-2)./abs(exp(1i*w))./abs(exp(j*w));
+theta=angle(exp(1i*w)-2)*2-angle(exp(1i*w))*2;
+theta=mod(theta,2*pi);
+subplot(2,2,1);
+plot(w,H);
+subplot(2,2,2);
+plot(w,theta)
+axis([0,2*pi,0,2*pi]);
+% 2
+[H2,theta2]=freqz([1,-4,4],[1 0 0],2000,"whole");
+subplot(2,2,3);
+plot(w,abs(H2));
+subplot(2,2,4);
+plot(w,theta2);
+axis([0,2*pi,0,2*pi]);
 
-
-
+%% 9
+clc;clear;
+H=tf([1 -4 4],[1 0 0]);
+bode(H)
 
 
