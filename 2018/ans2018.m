@@ -36,18 +36,23 @@ subplot(1,2,1);
 plot(sim_res.y);
 % 3
 %T=20ms
-N=64;
-T=0.02;
-t=linspace(0,T,N);
+sim_res=sim("q9",[0,0.2]);
+
+N=256;
+T0=0.2;
+t=linspace(0,T0,N);
 dt=t(2)-t(1);
 fs=1/dt;
 
-F=fft(sim_res.y.Data(1:41),N)*2/N;
+F=fft(sim_res.y.Data,N)*2/N;
 F=F(1:N/2+1);
 abs_F=20*log10(abs(F));
 f=fs*(0:N/2)/N;
 subplot(1,2,2)
 plot(f,abs_F)
+
+
+
 
 
 
