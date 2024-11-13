@@ -104,11 +104,11 @@ subplot(2,2,2);
 plot(w,theta)
 axis([0,2*pi,0,2*pi]);
 % 2
-[H2,theta2]=freqz([1,-4,4],[1 0 0],2000,"whole");
+[H2,theta2]=freqz([1,-4,4],[1],2000,"whole");
 subplot(2,2,3);
-plot(w,abs(H2));
+plot(theta2,abs(H2));
 subplot(2,2,4);
-plot(w,theta2);
+plot(theta2,mod(angle(H2),2*pi));
 axis([0,2*pi,0,2*pi]);
 
 %% 9

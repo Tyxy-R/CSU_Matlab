@@ -47,7 +47,7 @@ fs=1/dt;
 F=fft(sim_res.y.Data,N)*2/N;
 F=F(1:N/2+1);
 abs_F=20*log10(abs(F));
-f=fs*(0:N/2)/N;
+f=fs*(0:N/2)/(N-1);
 subplot(1,2,2)
 plot(f,abs_F)
 
