@@ -66,7 +66,7 @@ y=exp(x);
 res=taylor(y,x,0,"order",6);
 
 %% 9
-%感觉不考
+
 
 %% 10
 
@@ -78,6 +78,24 @@ Gl=-1;
 Beta=2.*pi.*f./(2*10^8);
 Gd=Gl*exp(-j.*2.*Beta.*d);
 Zd=Z0.*(1+Gd)./(1-Gd);
+Zd=subs(Zd,d,0.1);
+fplot(abs(Zd),[0,4*10^6])
 
+%% 2
+clc;clear;
+syms  k
+Gd=-exp(-j.*2.*2*pi.*k);
+Zd=50*(1+Gd)./(1-Gd);
+fplot(abs(Zd),[0,1])
+%% 3
+clc;clear;
+syms f d
+Gl=(25-50)/(25+50);
+Beta=2.*pi.*f./(2*10^8);
+Gd=Gl*exp(-j.*2.*Beta.*d);
+Zd=50.*(1+Gd)./(1-Gd);
 
-
+fsurf(abs(Zd),[0.1 0.2 0 4*10^6])
+xlabel("d")
+ylabel("f")
+zlabel("Zd")
