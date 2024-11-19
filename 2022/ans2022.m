@@ -80,7 +80,7 @@ clc;clear;
 format short
 syms L real;
 syms C real;
-w=2*pi*10^9;
+w=4*pi*10^9;
 Zt=150+75j;
 Zm=Zt*(1/w*C*j)/(Zt+1/w*C*j)+w*L*j;
 [res_L,res_C]=solve(Zm==75-15j,[L,C]);
