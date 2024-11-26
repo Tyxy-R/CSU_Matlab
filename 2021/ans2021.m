@@ -67,7 +67,10 @@ clc;clear;
 f=50;
 T=1/f;
 N=1024;
-x=linspace(0,16*T,N);
+% x=linspace(0,16*T,N);
+T0=0.32;%16个周期
+fs=N/T0;
+x=(0:N-1)/fs;
 f=sqrt(2)*sin(2*pi*f*x);
 scatter(x,f,".k");
 p=sum(f.^2)/N;
@@ -77,11 +80,12 @@ plot(1:N,noise);
 p_noise=sum(noise.^2)/N;
 s_n=10*log10(p/p_noise)
 %3
+
 scatter(x,f+noise);
-N=1024;
 F=fft(f+noise)*2/N;
-fs=1/(16/50/1024);
-plot(fs*(0:N/2)/N,10*log10(abs(F(1:N/2+1))));
+f_x=fs*(0:N/2)/(N);
+mag_F=abs(F(1:N/2+1));
+plot(f_x,10*log10(mag_F));
 %% 8
 %1
 clc;clear;
@@ -94,7 +98,13 @@ err=real_theta-theta;
 % 须使得theta减小，即使得更容性，需要延迟电压
 %反之 err<0  delay I
 
-
-err=abs(err);
+if err > 0  
+    disp("对电压采样进行延时");
+elseif err < 0
+    disp("对电流采样进行延时");
+else 
+    disp("均不需要进行延时");
+end
 delta=2*pi/32768;
-N=ceil(err/delta);
+N=ceil(abs(err)/delta);
+disp(N)
