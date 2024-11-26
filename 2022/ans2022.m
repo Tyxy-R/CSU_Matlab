@@ -41,7 +41,7 @@ y0=[0 1];
 
 
 % 2 见q4.slx
-
+out=sim("q42023b.slx","stoptime","5");
 % 3
 
 syms x y(x);
@@ -49,9 +49,9 @@ dy=diff(y,1);
 ddy=diff(y,2);
 y3=dsolve(ddy+x*dy+y==0,y(0)==0,dy(0)==1);
 
-plot(t,y1(:,1),0:0.01:5,out.y2.Data,t,subs(y3,t));
+plot(t,y1(:,1),".b",out.y2.Time,out.y2.Data,":r",t,subs(y3,t),"-.k");
 legend("y1","y2","y3")
-
+grid on 
 %% 5
 clc;clear;
 x=0.3:0.2:1.5;
