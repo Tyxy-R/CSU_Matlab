@@ -40,7 +40,10 @@ sim_res=sim("q9",[0,0.2]);
 
 N=256;
 T0=0.2;
-t=linspace(0,T0,N);
+% t=linspace(0,T0,N);
+fs=N/T0;
+t=sim_res.y.time;
+t=t(1:end-1);
 dt=t(2)-t(1);
 fs=1/dt;
 
