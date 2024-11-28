@@ -60,7 +60,7 @@ xq=0.4:0.2:1.4;
 % 1 
 y1=interp1(x,fx,xq,"linear");
 y2=interp1(x,fx,xq,"spline");
-%3
+%2
 xq2=0.3:0.1:1.5;
 y3=polyval(polyfit(x,fx,5),xq2);
 subplot(1,3,1);
@@ -111,9 +111,5 @@ subplot(2,2,4);
 plot(theta2,mod(angle(H2),2*pi));
 axis([0,2*pi,0,2*pi]);
 
-%% 9
-clc;clear;
-H=tf([1 -4 4],[1 0 0]);
-bode(H)
 
 

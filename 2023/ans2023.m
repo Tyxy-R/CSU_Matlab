@@ -17,6 +17,7 @@ I=integral2(f,0,pi,0,1);
 
 %% 3
 clc;clear;
+format short
 A=[38 21 0.71 0;
  12 -3.2 2 15;
  32 96 0.5 -2.9;
