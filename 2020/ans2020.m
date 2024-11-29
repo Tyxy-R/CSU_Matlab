@@ -10,8 +10,8 @@ surf(X,Y,f)
 clc;clear;
 x=linspace(0,2*pi,100);
 f=@(x)-sin(x).*x.^2;
-[~,mins]=fminbnd(f,0,2*pi);
-mins=-mins;
+[~,maxs]=fminbnd(f,0,2*pi);
+maxs=-maxs;
 
 %% 3
 A=[15 12 87;32 26 55];
@@ -45,7 +45,6 @@ F0=50;
 T0=1/F0;
 T=1/fs;
 N=T0/T;
-interp1
 t=linspace(0,2*T0,2*N);
 y=sin(2*pi*50*t);
 plot(t,y,"-*")
@@ -57,11 +56,11 @@ for i=1:N
     end
 end
 %2
-xq=linspace(x0(1),x0(2),2);
+xq=linspace(x0(1),x0(2),200000000);
 vq=interp1(x0(1:2),y(x0(3:4)),xq,"linear");
 [~,x_truth_idx]=min(abs(vq));
-x_truth=x0(1)+x_truth_idx*(xq(2)-xq(1));
-sprintf("误差为%f%%",(x_truth-1/100)*(1/100)*100)
+x_truth=xq(x_truth_idx);
+sprintf("误差为%f%%",(x_truth-1/100)/(1/100)*100)
 
 %% 8
 clc;clear;
@@ -79,6 +78,7 @@ fimplicit(@(x,y) (x-1).^2+(y-(1/0)).^2-((1/0).^2));
 hold on
 axis square
 axis([-1,1,-1,1])
+grid on
 %2
 [xx,yy]=solve(subs(R,r,1),subs(X,x,1));
 resx=xx(find(xx~=1));
