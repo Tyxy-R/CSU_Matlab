@@ -1,10 +1,11 @@
 %% 1
 clc;clear;
-x=linspace(-5,5,1000);
+x=linspace(-5,5,50);
 y=x;
 [X,Y]=meshgrid(x,y);
 f=(X+Y)./(X.^2+Y.^4+2);
-mesh(X,Y,f)
+surf(X,Y,f)
+
 %% 2
 clc;clear;
 A=[89  12   -0.713   0;
