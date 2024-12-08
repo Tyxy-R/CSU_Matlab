@@ -83,10 +83,10 @@ syms L real;
 syms C real;
 w=4*pi*10^9;
 Zt=150+75j;
-Zm=Zt*(1/w*C*j)/(Zt+1/w*C*j)+w*L*j;
+Zm=Zt*(1/(w*C*1i))/(Zt+1/(w*C*1i))+w*L*1i;
 [res_L,res_C]=solve(Zm==75-15j,[L,C]);
 res_L=eval(res_L.*10^9);
-res_C=eval(res_C.*10^-12);
+res_C=eval(res_C.*10^12);
 res_L=res_L(res_L>0);
 res_C=res_C(res_C>0);
 
