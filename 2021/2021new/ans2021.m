@@ -1,0 +1,95 @@
+%%1 
+clc;clear;
+A=[89 12 -0.713 0;
+    21 -45 42 5;
+    32 96 0 29;
+    5 -9.54 54 2.14;
+    ];
+B=[A(2,2) A(2,4);
+    A(end-1,1),A(end,1)];
+C=[ A(2,4) A(2,2);
+    A(end-1,1),A(end,1)];
+D=diag(diag(C));
+E=inv(D)
+%% 2
+clc;clear;
+% ode45
+tspan=[0,1];
+y0=1;
+[time,y1]=ode45(@(t,y)(t.^2+1).*y,tspan,y0);
+
+
+% simulink
+out=sim("der.slx","stoptime","1");
+% sym
+syms y(t);
+eqn=diff(y)==(t.^2+1).*y;
+cond=y(0)==1;
+y3=dsolve(eqn,cond);
+% plot
+plot(time,y1(:,1),".b",out.y2.Time,out.y2.Data,":r",time,subs(y3,time),"-.k");
+legend("y1","y2","y3")
+grid on 
+%% 3
+clc;clear;
+f=@(x,y)x./(x.^4+y.^4+1);
+fsurf(f,[-5,5,-5,5]);
+%% 4
+clc;clear;
+xk=[0.3	0.5	0.7	0.9	1.1	1.3	1.5];
+fxk=[0.3	0.6	0.9	1.1	1.3	1.6	1.8];
+I1=trapz(xk,fxk);
+p=polyfit(xk,fxk,3);
+I2=diff((polyval(polyint(p),[0.3,1.5])));
+%% 5
+clc;clear;
+p1=[5,4,3];
+p2=[1,0];
+p=conv(p1,p2);
+[fenmu,fenzi]=polyder(p);
+%% 6
+clc;clear;
+syms x
+f=(sqrt(sym(pi))-sqrt(acos(x)))./sqrt(x+1);
+res=eval(limit(f,x,-1,"right"));
+%% 7
+clc;clear;
+f=50;
+T=1/f;
+format short
+%
+t=linspace(0,16*T,1025);
+t=t(1:end-1);
+dt=t(2)-t(1);
+Fs=1/dt;
+
+y1=sqrt(2)*sin(2*pi*f*t);
+p_y1=sum((abs(y1)).^2)/1024;
+
+subplot(2,2,1)
+plot(t,y1,"Marker","o","MarkerSize",4)
+grid on
+
+
+noise=sqrt(1/10^4)*randn(1,1024);
+p_noise=sum((abs(noise)).^2)/1024;
+SNR=10*log10(p_y1/p_noise);
+subplot(2,2,2)
+scatter(t,noise,"Marker","*")
+grid on 
+
+y2=y1+noise;
+subplot(2,2,3)
+plot(t,y2,"Marker","o")
+grid on 
+
+
+
+subplot(2,2,4)
+[abs_H,angle_H,freq]=my_FFT(y2,1024,Fs);
+plot(freq,10*log10(abs_H))
+
+
+grid on 
+
+
