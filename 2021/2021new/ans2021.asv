@@ -101,15 +101,3 @@ real_theta=acos((1+e)*cos(theta));
 err=real_theta-theta;
 
 
-if err>0
-    disp("延迟电压")
-elseif err<0
-    disp("延迟电流")
-else
-    disp("不需要")
-end
-delta=2*pi/32768;
-N=ceil(abs(err)/delta);
-disp(N)
-
-
