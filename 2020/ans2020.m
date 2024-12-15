@@ -30,7 +30,7 @@ p=conv(p1,p2)+[0 0 p3];
 clc;clear;
 x=linspace(0,pi,10);
 f=@(x)cos(x);
-res=diff(f([x,x,x(end)+x(2)-x(1)]),1);
+res=diff(f([x,x(end)+x(2)-x(1)]),1);
 
 %% 6
 clc;clear;
