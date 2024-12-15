@@ -55,9 +55,7 @@ plot(x0,maxs,"Marker","*","MarkerSize",10)
 %% 7
 clc;clear;
 x=linspace(0,pi,10);
-y=@(x)cos(x);
-dy=diff(y([x,1.1*pi]));
-stem(x,dy)
+dx=diff(cos([x,x(end)+x(2)-x(1)]),1);
 
 %% 8
 clc;clear;
