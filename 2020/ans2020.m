@@ -22,7 +22,7 @@ E=inv(D);
 
 %% 4
 p1=[1,2,1,0];
-p2=[1,0];
+p2=[1,1];
 p3=[5,4,3];
 p=conv(p1,p2)+[0 0 p3];
 
@@ -30,7 +30,7 @@ p=conv(p1,p2)+[0 0 p3];
 clc;clear;
 x=linspace(0,pi,10);
 f=@(x)cos(x);
-res=diff(f([x,1.1*pi]));
+res=diff(f([x,x,x(end)+x(2)-x(1)]),1);
 
 %% 6
 clc;clear;
@@ -45,7 +45,7 @@ F0=50;
 T0=1/F0;
 T=1/fs;
 N=T0/T;
-t=linspace(0,2*T0,2*N);
+t=(0:2*N-1)/fs;
 y=sin(2*pi*50*t);
 plot(t,y,"-*")
 dt=t(2)-t(1);
