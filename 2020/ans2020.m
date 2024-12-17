@@ -56,11 +56,15 @@ for i=1:N
     end
 end
 %2
-xq=linspace(x0(1),x0(2),200000000);
-vq=interp1(x0(1:2),y(x0(3:4)),xq,"linear");
-[~,x_truth_idx]=min(abs(vq));
-x_truth=xq(x_truth_idx);
-sprintf("误差为%f%%",(x_truth-1/100)/(1/100)*100)
+% xq=linspace(x0(1),x0(2),200000000);
+% vq=interp1(x0(1:2),y(x0(3:4)),xq,"linear");
+% [~,x_truth_idx]=min(abs(vq));
+% x_truth=xq(x_truth_idx);
+% sprintf("误差为%f%%",(x_truth-1/100)/(1/100)*100)
+vq=interp1(y(x0(3:4)),x0(1:2),0,"linear");
+sprintf("误差为%f%%",(vq-1/100)/(1/100)*100)
+
+
 
 %% 8
 clc;clear;
