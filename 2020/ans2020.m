@@ -75,6 +75,9 @@ hold on
 fimplicit(subs(X,x,[-2,-3/2,-1,-1/2,1/2,1,3/2,2]));
 hold on
 fimplicit(@(x,y) (x-1).^2+(y-(1/0)).^2-((1/0).^2));
+
+fplot(0,[-1,1]);
+
 hold on
 axis square
 axis([-1,1,-1,1])
