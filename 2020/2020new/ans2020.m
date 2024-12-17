@@ -50,13 +50,13 @@ for i=1:+inf
         break
     end
 end
-xq=linspace(t(loc(1)),t(loc(2)),2);
-y1=interp1(t(loc),fval,xq,"linear");
-[mins,mins_idx]=min(abs(y1));
-res_y1=xq(mins_idx);
-res_y2=0.01;
-err=abs((res_y1-res_y2)/res_y2*100);
-sprintf("相对误差为百分之%f",err)
+% xq=linspace(x0(1),x0(2),200000000);
+% vq=interp1(x0(1:2),y(x0(3:4)),xq,"linear");
+% [~,x_truth_idx]=min(abs(vq));
+% x_truth=xq(x_truth_idx);
+% sprintf("误差为%f%%",(x_truth-1/100)/(1/100)*100)
+vq=interp1(y(x0(3:4)),x0(1:2),0,"linear");
+sprintf("误差为%f%%",(vq-1/100)/(1/100)*100)
 
 %% 8
 % a

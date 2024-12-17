@@ -46,7 +46,7 @@ clc;clear;
 p1=[5,4,3];
 p2=[1,0];
 p=conv(p1,p2);
-[fenmu,fenzi]=polyder(p);
+[fenzi,fenmu]=polyder(p1,p2);
 %% 6
 clc;clear;
 syms x
