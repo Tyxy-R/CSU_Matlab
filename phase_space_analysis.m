@@ -57,9 +57,9 @@ function phase_space_analysis(odefun, xlim, ylim, varargin)
     addParameter(p, 'VectorField', true, @islogical);
     addParameter(p, 'GridDensity', 20, @isnumeric);
     addParameter(p, 'Nullclines', false, @islogical);
-    addParameter(p, 'XLabel', 'y_1', @ischar);
-    addParameter(p, 'YLabel', 'y_2', @ischar);
-    addParameter(p, 'Title', '相空间图 / Phase Space Plot', @ischar);
+    addParameter(p, 'XLabel', 'y_1', @(x) ischar(x) || isstring(x));
+    addParameter(p, 'YLabel', 'y_2', @(x) ischar(x) || isstring(x));
+    addParameter(p, 'Title', '相空间图 / Phase Space Plot', @(x) ischar(x) || isstring(x));
     parse(p, varargin{:});
     
     % 提取参数 / Extract parameters
@@ -110,9 +110,9 @@ function phase_space_analysis(odefun, xlim, ylim, varargin)
         end
         
         % x-零倾线 (dy1/dt = 0) / x-nullcline (dy1/dt = 0)
-        contour(X, Y, U, [0 0], 'r--', 'LineWidth', 1.5, 'DisplayName', 'x-零倾线');
+        contour(X, Y, U, [0 0], 'r--', 'LineWidth', 1.5, 'DisplayName', 'x-nullcline');
         % y-零倾线 (dy2/dt = 0) / y-nullcline (dy2/dt = 0)
-        contour(X, Y, V, [0 0], 'b--', 'LineWidth', 1.5, 'DisplayName', 'y-零倾线');
+        contour(X, Y, V, [0 0], 'b--', 'LineWidth', 1.5, 'DisplayName', 'y-nullcline');
     end
     
     % 绘制轨迹 / Plot trajectories
