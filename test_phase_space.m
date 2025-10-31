@@ -41,7 +41,7 @@ files_to_check = {
     'phase_space_analysis.m', '核心函数 / Core function';
     'phase_space_examples.m', '示例集 / Example set';
     'phase_space_quickstart.m', '快速入门 / Quick start';
-    'phase_space_integration_example.m', '集成示例 / Integration example';
+    'phase_space_integration_example.m', '整合示例 / Integration example';
     'PHASE_SPACE_README.md', '文档 / Documentation'
 };
 
